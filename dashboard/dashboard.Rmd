@@ -1,0 +1,30 @@
+---
+title: "HUAWEI"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: cerulean
+---
+
+```{r setup, include=TRUE}
+library(flexdashboard)
+library(dygraphs)
+library(d3heatmap)
+if(file.exists(paste(getwd(),"/UPSCALE.RData", sep="")))load('UPSCALE.RData')
+if(file.exists(paste(getwd(),"/DOWNSCALE.RData", sep="")))load('DOWNSCALE.RData')
+```
+
+ABNORMAL PROTOCOL TRAFFIC  
+=============================
+
+### Remarkable Falling Traffic (GB)
+```{r}
+if(file.exists(paste(getwd(),"/DOWNSCALE.RData", sep="")))dygraph(downScale_subset_ts)
+```
+
+### Remarkable Rising Traffic (GB)
+
+```{r}
+if(file.exists(paste(getwd(),"/UPSCALE.RData", sep="")))dygraph(upScale_subset_ts)
+```
